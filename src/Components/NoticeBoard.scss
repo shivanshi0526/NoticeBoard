@@ -1,0 +1,98 @@
+.notice-board {
+  font-family: 'Arial', sans-serif;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffd700; // Dark Yellow background
+
+  .board-container {
+    width: 80%;
+    height: 80%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    position: relative;
+    background-color: #dcb83e;
+    overflow: hidden; // Light Yellow board color
+
+    .add-card-btn {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .card {
+      background-color: #f7dfaf; // Sticky note color
+      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      border: 1px solid #ccc;
+      border-radius: 10px; /* Rounded corners for the sticky note effect */
+      padding: 4px; /* Increased padding to simulate a sticky note */
+      margin: 10px;
+      position: absolute;
+      cursor: grab;
+      transition: box-shadow 0.3s, transform 0.3s; /* Added transform transition */
+      width: 150px;
+
+      &.pinned {
+        z-index: 1;
+        cursor: default;
+      }
+
+      .card-content {
+        outline: none;
+        font-family: 'Arial', sans-serif;
+        word-break: break-all;
+        font-size: 14px;
+        padding: 15px;
+        min-height: 20px;
+        color: #0000ff; // Blue text color
+
+        &.editing {
+          box-shadow: 0 0 5px 2px #32cd32;
+        }
+      }
+
+      .pin-btn,
+      .delete-btn {
+        display: none;
+        position: absolute;
+        cursor: pointer;
+        border: none;
+        border-radius: 50%; /* Circular shape */
+        font-weight: bold;
+        transition: opacity 0.3s;
+
+        &.pin-btn {
+          top: -15px;
+          right: 15px;
+          padding: 3px; /* Adjust icon size */
+          background-color: #ffd700; // Dark Yellow Pin Button
+          color: #fff;
+        }
+
+        &.delete-btn {
+          top: -15px;
+          right: -15px;
+          padding: 3px;
+          background-color: #ff6347;
+          color: #fff;
+        }
+      }
+
+      &:hover {
+        box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+        transform: scale(1.05); /* Added scaling on hover */
+
+        .pin-btn,
+        .delete-btn {
+          display: inline-block;
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
