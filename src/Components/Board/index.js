@@ -11,19 +11,27 @@ const Board = () => {
 
   const addCard = () => {
     const newCardId = `card${cardCount}`;
+    const boardWidth = document.querySelector('.board-container').offsetWidth;
+    const boardHeight = document.querySelector('.board-container').offsetHeight;
+  
+    // Calculate random positions within the board's dimensions
+    const randomX = Math.floor(Math.random() * (boardWidth - 150)); // Adjust 150 based on card width
+    const randomY = Math.floor(Math.random() * (boardHeight - 20)); // Adjust 20 based on card height
+  
     const newCard = {
       id: newCardId,
       content: `Card ${cardCount + 1}`,
       pinned: false,
       editing: false,
-      position: { x: 0, y: 0 },
+      position: { x: randomX, y: randomY },
       width: 150, // Set your card width
       height: 20, // Set your card height
-      zIndex:zIndex
+      zIndex: zIndex,
     };
+  
     setCards([...cards, newCard]);
     setCardCount(cardCount + 1);
-    setZindex(zIndex+1)
+    setZindex(zIndex + 1);
   };
 
   const handleDrop = (e) => {
