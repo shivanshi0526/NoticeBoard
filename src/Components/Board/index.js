@@ -1,8 +1,6 @@
-// board.js
-
 import React, { useState } from 'react';
-import Card from '../Card';// Importing the Card component
-import '../NoticeBoard.scss'; // Assuming you have a separate CSS file for the board styles
+import Card from '../Card';
+import '../NoticeBoard.scss'; 
 
 const Board = () => {
   const [cardCount, setCardCount] = useState(0);
@@ -14,9 +12,8 @@ const Board = () => {
     const boardWidth = document.querySelector('.board-container').offsetWidth;
     const boardHeight = document.querySelector('.board-container').offsetHeight;
   
-    // Calculate random positions within the board's dimensions
-    const randomX = Math.floor(Math.random() * (boardWidth - 150)); // Adjust 150 based on card width
-    const randomY = Math.floor(Math.random() * (boardHeight - 20)); // Adjust 20 based on card height
+    const randomX = Math.floor(Math.random() * (boardWidth - 150)); 
+    const randomY = Math.floor(Math.random() * (boardHeight - 20)); 
   
     const newCard = {
       id: newCardId,
@@ -24,8 +21,8 @@ const Board = () => {
       pinned: false,
       editing: false,
       position: { x: randomX, y: randomY },
-      width: 150, // Set your card width
-      height: 20, // Set your card height
+      width: 150, 
+      height: 20, 
       zIndex: zIndex,
     };
   
@@ -39,18 +36,17 @@ const Board = () => {
     const draggedCardId = e.dataTransfer.getData('cardId');
     const draggedCard = cards.find((card) => card.id === draggedCardId);
   
-    if (draggedCard && !draggedCard.pinned) {
+    if (draggedCard) {
       const boardRect = e.currentTarget.getBoundingClientRect();
       const cardHeight = document.querySelector(`#${draggedCardId}`).clientHeight;
-  
       const offsetX = e.clientX - boardRect.left - draggedCard.width / 2;
       const offsetY = e.clientY - boardRect.top - cardHeight / 2;
   
       const draggedBounds = {
-        left: offsetX,
-        top: offsetY,
-        right: offsetX + draggedCard.width,
-        bottom: offsetY + draggedCard.height,
+        left: e.clientX,
+        top: e.clientY,
+        right: e.clientX + draggedCard.width,
+        bottom: e.clientY + draggedCard.height,
       };
   
       let isOverlapping = false;
@@ -63,7 +59,8 @@ const Board = () => {
             right: pinnedCardRect.right,
             bottom: pinnedCardRect.bottom,
           };
-  
+          console.log(draggedBounds,pinnedBounds)
+          console.log(e.clientX,e.clientY,boardRect.left,"left",boardRect.top,"top")
           if (
             draggedBounds.left < pinnedBounds.right &&
             draggedBounds.right > pinnedBounds.left &&
@@ -74,7 +71,7 @@ const Board = () => {
           }
         }
       });
-  
+       console.log(isOverlapping)
       if (!isOverlapping) {
         const updatedCards = cards.map((card) =>
           card.id === draggedCardId ? { ...card, position: { x: offsetX, y: offsetY },zIndex:zIndex+1 } : card

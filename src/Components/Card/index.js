@@ -3,6 +3,7 @@
 import React, { useRef, useEffect } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import PushPinIcon from '@mui/icons-material/PushPin';
+import EditIcon from '@mui/icons-material/Edit';
 
 const Card = ({
   id,
@@ -68,7 +69,7 @@ const Card = ({
     }
   };
 
-  const handleDoubleClick = (cardId) => {
+  const handleEdit = (cardId) => {
     const updatedCards = cards.map((card) =>
       card.id === cardId ? { ...card, editing: true } : card
     );
@@ -105,7 +106,7 @@ const Card = ({
         contentEditable={editing && !pinned}
         suppressContentEditableWarning={true}
         onBlur={() => handleBlur(id)}
-        onDoubleClick={() => handleDoubleClick(id)}
+        onDoubleClick={() => handleEdit(id)}
         ref={(ref) => {
           if (editing) {
             contentEditableRef.current = ref;
@@ -114,6 +115,11 @@ const Card = ({
       >
         {content}
       </div>
+      <EditIcon
+      className="edit-btn"
+      fontSize="small"
+      style={{ opacity: pinned ? '0' : '1' }}
+      onClick={() => handleEdit(id)}/>
       <PushPinIcon
         className="pin-btn"
         fontSize="small"

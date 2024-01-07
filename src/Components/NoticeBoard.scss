@@ -6,7 +6,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #ffd700; // Dark Yellow background
+  background-color: #ffd700; 
 
   .board-container {
     width: 80%;
@@ -15,7 +15,7 @@
     border-radius: 5px;
     position: relative;
     background-color: #dcb83e;
-    overflow: scroll; // Light Yellow board color
+    overflow: scroll; 
 
     .add-card-btn {
       position: absolute;
@@ -23,7 +23,7 @@
       left: 10px;
       padding: 10px;
       cursor: pointer;
-      background-color: #00cc66; /* Green Add Card button */
+      background-color: #00cc66; 
       color: #fff;
       border: none;
       border-radius: 5px;
@@ -31,19 +31,19 @@
       transition: background-color 0.3s;
     }
     .add-card-btn:hover {
-      background-color: #008040; /* Darker green on hover */
+      background-color: #008040; 
     }
 
     .card {
-      background-color: #f7dfaf; // Sticky note color
+      background-color: #f7dfaf; 
       box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
       border: 1px solid #ccc;
-      border-radius: 10px; /* Rounded corners for the sticky note effect */
-      padding: 4px; /* Increased padding to simulate a sticky note */
+      border-radius: 10px; 
+      padding: 4px; 
       margin: 10px;
       position: absolute;
       cursor: grab;
-      transition: box-shadow 0.3s, transform 0.3s; /* Added transform transition */
+      transition: box-shadow 0.3s, transform 0.3s; 
       width: 150px;
 
       &.pinned {
@@ -58,7 +58,7 @@
         font-size: 14px;
         padding: 15px;
         min-height: 20px;
-        color: #0000ff; // Blue text color
+        color: #0000ff; 
 
         &.editing {
           box-shadow: 0 0 5px 2px #32cd32;
@@ -66,20 +66,21 @@
       }
 
       .pin-btn,
-      .delete-btn {
+      .delete-btn,
+      .edit-btn {
         display: none;
         position: absolute;
         cursor: pointer;
         border: none;
-        border-radius: 50%; /* Circular shape */
+        border-radius: 50%; 
         font-weight: bold;
         transition: opacity 0.3s;
 
         &.pin-btn {
           top: -15px;
           right: 15px;
-          padding: 3px; /* Adjust icon size */
-          background-color: #ffd700; // Dark Yellow Pin Button
+          padding: 3px; 
+          background-color: #ffd700;
           color: #fff;
         }
 
@@ -90,14 +91,22 @@
           background-color: #ff6347;
           color: #fff;
         }
+        &.edit-btn {
+          top: -15px;
+          right: 45px;
+          padding: 3px;
+          background-color: #3146e5;
+          color: #fff;
+        }
       }
 
       &:hover {
         box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
-        transform: scale(1.05); /* Added scaling on hover */
+        transform: scale(1.05);
 
         .pin-btn,
-        .delete-btn {
+        .delete-btn,
+        .edit-btn{
           display: inline-block;
           opacity: 1;
         }
